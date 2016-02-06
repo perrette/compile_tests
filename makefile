@@ -5,15 +5,12 @@ l=lib
 i=include
 b=bin
 
-all: static shared
-static: $(b)/main_a
-shared: $(b)/main_so
+all: static main
+main: $(b)/main
+static: $(l)/libmod1.a
+shared: $(l)/libmod1.so
 
-$(b)/main_a: $(l)/libmod1.a $(o)/prog.o
-	@mkdir -p $(b)
-	$(FC) -static $(o)/prog.o -o $@ -lmod1 -L$(l)
-
-$(b)/main_so: $(l)/libmod1.so $(o)/prog.o
+$(b)/main: $(o)/prog.o
 	@mkdir -p $(b)
 	$(FC) $(o)/prog.o -o $@ -lmod1 -L$(l) -Wl,-rpath,$(l)
 
