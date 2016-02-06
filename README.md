@@ -7,11 +7,12 @@ Examples:
 
 ```
 # compilation using shared library
-make clean shared main
-./bin/main  # that works !
+make clean shared
+rm -f ./obj/mod1.o  # object file(s) not nececssary any more ! (the `.mod` file is !)
+make main
+./bin/main  # that works
 
 # try removing the library
-ls *
 rm -rf lib
 ./bin/main   # that fails !
 
@@ -20,7 +21,6 @@ make clean static main
 ./bin/main  # that works
 
 # try removing the libray and all compilation objects
-ls *
 rm -rf lib obj include
 ./bin/main   # that still works !
 ```
